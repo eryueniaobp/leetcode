@@ -1,4 +1,6 @@
 class Solution {
+    int left[1000];
+    int right[1000];
 public:
     int maximalRectangle(vector<vector<char> > &matrix) {
         // Start typing your C/C++ solution below
@@ -33,19 +35,25 @@ public:
         }
         int max = INT_MIN;
         for(int i =  0 ; i<c ; i ++ ){
-            int j = 0 ;
-            while(j<l){
-                int t = j ;
-                while(t>=0 && tag[t][i] >= tag[j][i] ) t--;
-                int k = j;
-                while(k<l && tag[k][i] >= tag[j][i] ) k++;
-                
-                int cur =( (j-t) + (k-j)  - 1 ) * tag[j][i] ;
-                if(cur > max){
-                    max = cur;
-                }
-                j++;
-            }
+           for( int j = 0 ; j < l ;j ++ ){
+                left[j] = right[j] = j ; 
+           }
+           for( int j = 0 ; j< l ; j ++ ) {
+               while( left[j] > 0 && tag[j][i] <= tag[ left[j] - 1 ] [i] ) {
+                   left[j] = left [ left[j] - 1 ] ; 
+               }
+           }
+           for ( int j = l-1 ; j>=0 ;j -- ) {
+               while (right[j] < l-1 && tag[j][i] <= tag[ right[j] + 1 ] [i] ) {
+                   right[j] = right[ right[j] + 1 ] ;
+               }
+           }
+           for( int  j = 0 ; j < l ; j++ ){
+               int tmp = tag[j][i] * ( right[j] - left[j] + 1 ) ; 
+               if(tmp > max ) {
+                   max =tmp ;
+               }
+           }
         }
         return max;
     }
