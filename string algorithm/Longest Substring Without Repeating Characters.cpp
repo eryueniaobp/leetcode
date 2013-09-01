@@ -1,38 +1,39 @@
 class Solution {
-    int count[256];
+    int hash[256];
+    int first[1000];
+    int next[1000] ;
 public:
     int lengthOfLongestSubstring(string s) {
         // Start typing your C/C++ solution below
         // DO NOT write int main() function
-        memset(count,0,256*sizeof(int));
+        //memset(count,0,256*sizeof(int));
         int size = s.size();
         if(size == 0 ){
             return 0;
         }
-        int max = INT_MIN;
-        int cur = 0;
-        for(int i = 0 ;i<size;i++){
-            if(count[s[i]] + 1 > 1){
-                memset(count,0,256*sizeof(int));
-                count[s[i]] = 1;
-                int j = 0 ;
-                for( j = i-1; j>=0 ; j--){
-                    if(s[j] == s[i] ){
-                        break;
-                    }
-                    count[s[j]] = 1;
-                }
-                cur = i - j;
+        fill(hash,hash+256,size) ;
+        first[size-1] = size;
+        next[size-1] = size;
+        hash[s[size-1]] = size-1;
+        for(int i = size-2 ; i >= 0; i -- ){
+            next[i] = hash[s[i]] ; 
+            hash[s[i]] = i ; 
+            if( next[i] < first[i+1] ){
+                first[i] = next[i];
             }else{
-                count[s[i]] ++ ;
-                cur ++ ;
+                first[i] = first[i+1] ; 
             }
-            if(cur > max ){
-                max = cur;
+        }
+
+        int max = INT_MIN;
+        for(int i = 0 ;i<size;i++){
+            if(first[i] - i > max ){
+                max = first[i] - i ;
             }
         }
         return max;
     }
 };
+
 
 
