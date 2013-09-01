@@ -1,47 +1,45 @@
 class Solution {
-public:
-    string findPal(string &s, int left, int right)
-    {
-        if (left < 0)
-            return s.substr(left+1, 1);
-            
-        if (right >= s.size())
-            return s.substr(right-1, 1);
-            
-        while(0 <= left && right < s.size())
-        {
-            if (s[left] != s[right])
-                break;
-            left--;
-            right++;
-        }
-        
-        left++;
-        right--;
-        
-        return s.substr(left, right - left + 1);        
-    }
     
+public:
     string longestPalindrome(string s) {
         // Start typing your C/C++ solution below
         // DO NOT write int main() function
         if (s.size() == 0)
             return "";
-            
-        string ret;
-        
-        for(int i = 0; i < s.size(); i++)
-        {
-            string str = findPal(s, i - 1, i + 1);
-            if (str.size() > ret.size())
-                ret = str;
-                
-            str = findPal(s, i, i + 1);
-            if (str.size() > ret.size())
-                ret = str;
+        string str(s.size() * 2 + 1,'\0')  ;
+        str[0] = '#'  ;
+        for(int i = 0 ; i< s.size() ; i++ ) {
+            str[i*2 + 1 ] = s[i];
+            str[i*2 + 2 ] = '#' ; 
         }
-        
-        return ret;
+        vector<int> tag(s.size()*2 + 1 ) ;         
+
+        int mr = 0 ; 
+        int cur = 0 ; 
+        for(int i = 0 ; i < s.size() *2 +1 ; i ++ ){
+            if(mr > i ) {
+                tag[i] = min ( tag[2*cur -i ] ,tag[cur] - ( i-cur) ) ; 
+            }else{
+                tag[i] = 1; 
+            }
+            while(i-tag[i]>=0 && str[i + tag[i]] == str[i - tag[i] ] ) {
+                tag[i] ++ ;
+            }
+            if( tag[i] + i > mr ) {
+                mr = tag[i] + i ; 
+                cur = i ;
+            }
+        }
+        int max = INT_MIN; 
+        int pos = -1; 
+        for(int i = 0 ; i < tag.size() ; i++ ) {
+            if(tag[i] > max ) {
+                pos =  i ; 
+                max = tag[i] ; 
+            }
+        }
+        return s.substr( (pos-1)/2 - max/2 + 1 , max - 1 ) ;
     }
 };
+
 
