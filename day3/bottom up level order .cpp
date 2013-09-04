@@ -18,36 +18,34 @@ public:
 		}
 		deque<TreeNode*> nodes ;
 		nodes.push_back(root);
-		deque<TreeNode*> level;
 		ans.push_back(vector<int>(1,root->val));	
-		int s , e ; 
-		s = e = -1;
+        int count = 1; 
 		TreeNode * nd = NULL; 
 		while(true){
-			while(nodes.size()>0){
+            int ncount = 0 ;
+            vector<int> lvec;
+			while(count-->0){
 				nd = nodes.front();
 				nodes.pop_front();
 				if(nd->left != NULL){
-					level.push_back(nd->left);
+					nodes.push_back(nd->left);
+                    lvec.push_back(nd->val);
+                    ncount++;
 				}
 				if(nd->right!=NULL){
-					level.push_back(nd->right);
+					nodes.push_back(nd->right);
+                    lvec.push_back(nd->val);
+                    ncount++;
 				}
 			}
-			vector<int> lvec ; 
-			while(level.size()>0){
-				nd = level.front();
-				level.pop_front();
-				lvec.push_back(nd->val);
-				nodes.push_back(nd);
-			}
-			if(lvec.size() == 0 ) break;
-			ans.push_back(lvec);
-		}
-		for(int i = 0 ; i<ans.size()/2 ; i++){
+            count = ncount ; 
+            if(count == 0 ) break;
+            ans.push_back(lvec);
+        }
+        for(int i = 0 ; i<ans.size()/2 ; i++){
 			swap(ans[i],ans[ans.size()-1-i]);
 		}
-	 	return ans;				
+        return ans;
     }
 };
 

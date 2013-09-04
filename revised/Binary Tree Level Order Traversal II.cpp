@@ -9,8 +9,8 @@
  */
 class Solution {
 public:
-    vector<vector<int> > zigzagLevelOrder(TreeNode *root) {
-        // Start typing your C/C++ solution below
+      vector<vector<int> > levelOrderBottom(TreeNode *root) {    
+		// Start typing your C/C++ solution below
         // DO NOT write int main() function
 		vector<vector<int>> ans;
 		if(!root) {
@@ -18,10 +18,9 @@ public:
 		}
 		deque<TreeNode*> nodes ;
 		nodes.push_back(root);
-        int count = 1;
 		ans.push_back(vector<int>(1,root->val));	
+        int count = 1; 
 		TreeNode * nd = NULL; 
-		bool right = true;
 		while(true){
             int ncount = 0 ;
             vector<int> lvec;
@@ -31,26 +30,22 @@ public:
 				if(nd->left != NULL){
 					nodes.push_back(nd->left);
                     lvec.push_back(nd->left->val);
-                    ncount ++ ;
+                    ncount++;
 				}
 				if(nd->right!=NULL){
 					nodes.push_back(nd->right);
                     lvec.push_back(nd->right->val);
-                    ncount ++ ;
+                    ncount++;
 				}
 			}
-            count = ncount ;
-            if(count == 0 ) break; 
-			if(right){
-				//reverse
-				for(int i = 0 ; i<lvec.size()/2;i++){
-					swap(lvec[i],lvec[lvec.size()-1-i]);
-				}	
-			}
-			ans.push_back(lvec);
-			right = !right;
+            count = ncount ; 
+            if(count == 0 ) break;
+            ans.push_back(lvec);
+        }
+        for(int i = 0 ; i<ans.size()/2 ; i++){
+			swap(ans[i],ans[ans.size()-1-i]);
 		}
-	 	return ans;				
+        return ans;
     }
 };
 
