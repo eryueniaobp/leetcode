@@ -1,3 +1,7 @@
+/**
+ * O(n^2) 
+ * f(n) = f(0)*f(n-1) + f(1)*f(n-2) + .... + f(n-1)*f(0)
+ */
 class Solution {
 public:
     int numTrees(int n) {

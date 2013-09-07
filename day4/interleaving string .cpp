@@ -1,3 +1,6 @@
+/**
+ * O(n^2) 动态规划
+ */
 class Solution {
 private:
     bool f[1000][1000];

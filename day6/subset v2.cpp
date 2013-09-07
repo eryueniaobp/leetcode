@@ -1,30 +1,30 @@
 class Solution {
-    int _size;
-    vector<vector<int> > _ret;
-    vector<int> _set;
+    int size_;
+    vector<vector<int> > ret_;
+    vector<int> set_;
 public:
     vector<vector<int> > subsets(vector<int> &S) {
         // Start typing your C/C++ solution below
         // DO NOT write int main() function
-        _size = S.size();
+        size_ = S.size();
         sort(S.begin(),S.end(),less<int>());
-        _ret.clear();
-        _set.clear();
+        ret_.clear();
+        set_.clear();
         dfs(S,0);  
-        return _ret;
+        return ret_;
     }
     void dfs(vector<int> &S, int l){
-        if(l == _size ){
-            _ret.push_back(_set);
+        if(l == size_ ){
+            ret_.push_back(set_);
             return;
         }
-        for(int i =  l ; i<=_size ;i++){
-            if(i<_size){
-                _set.push_back(S[i]);
+        for(int i =  l ; i<=size_ ;i++){
+            if(i<size_){
+                set_.push_back(S[i]);
                 dfs(S,i+1);
-                _set.pop_back();
+                set_.pop_back();
             }else{
-                _ret.push_back(_set);
+                ret_.push_back(set_);
             }
         }
     }

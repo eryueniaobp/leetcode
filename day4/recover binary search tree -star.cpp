@@ -1,3 +1,6 @@
+/**
+ * O(n) 遍历一遍 
+ */
 class Solution {
 public:
     void treeWalk(TreeNode* root, TreeNode*& prv, TreeNode*& first, TreeNode*& second)

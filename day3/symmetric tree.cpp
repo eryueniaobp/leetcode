@@ -6,6 +6,7 @@
  *     TreeNode *right;
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
+ * O(n)
  */
 class Solution {
 public:
