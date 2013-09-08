@@ -1,3 +1,6 @@
+/**
+ * O(n)
+ */
 class Solution {
 public:
     bool canJump(int A[], int n) {
