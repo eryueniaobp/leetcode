@@ -1,8 +1,8 @@
 class Solution {
-    int _l ;
-    int _r; 
-    vector<string> _rets;
-    vector<char> _ret;
+    int l_ ;
+    int r_; 
+    vector<string> rets_;
+    vector<char> ret_;
 public:
     string build(vector<char> &a){
         string s ;
@@ -30,33 +30,33 @@ public:
     void dfs(int l,int r,int n){
         if( l == n ) {
             if( r < n ) {
-                _ret.push_back(')');
+                ret_.push_back(')');
                 dfs(l,r+1,n);
-                _ret.pop_back();
+                ret_.pop_back();
                 return ;
             }else{
-                _rets.push_back(build(_ret));
+                rets_.push_back(build(ret_));
                 return;
             }
         }
-        _ret.push_back('(');
+        ret_.push_back('(');
         dfs(l+1,r,n);
-        _ret.pop_back();
-        if( check(_ret) ){
-            _ret.push_back(')');
+        ret_.pop_back();
+        if( check(ret_) ){
+            ret_.push_back(')');
             dfs(l,r+1,n);
-            _ret.pop_back();
+            ret_.pop_back();
         }
     }
     vector<string> generateParenthesis(int n) {
         // Start typing your C/C++ solution below
         // DO NOT write int main() function
-        _l = 0 ;
-        _r = 0 ; 
-        _rets.clear();
-        _ret.clear();
-        dfs(_l,_r,n);
-        return _rets;
+        l_ = 0 ;
+        r_ = 0 ; 
+        rets_.clear();
+        ret_.clear();
+        dfs(l_,r_,n);
+        return rets_;
     }
 };
 

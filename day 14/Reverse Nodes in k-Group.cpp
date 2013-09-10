@@ -4,7 +4,9 @@
  *     int val;
  *     ListNode *next;
  *     ListNode(int x) : val(x), next(NULL) {}
+ *
  * };
+ * O(n) 链表的题目都比较琐碎..
  */
 struct Node
 {

@@ -1,12 +1,13 @@
 /**
- * 比较复杂
+ * O(n)的算法 n = S.size() ;
+ * O(k * ( n/k + n/k ) ) = O(n) 
+ * 144 ms  
  * */
-
 class Solution {
     private:
         int count[1000];
         int countSize;
-        map<string, int> index;
+        unordered_map<string, int> index;
         vector<int> ret;
     public:
         vector<int> findSubstring(string S, vector<string> &L) {
@@ -105,4 +106,5 @@ class Solution {
             return ret;
         }
 };
+
 
