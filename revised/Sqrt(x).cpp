@@ -1,5 +1,6 @@
 /**
- * 牛顿迭代法
+ * 牛顿迭代法  f(y) = y^2 - x   ( 注意:x是已知量) 
+ * y(n+1) = y(n) - f(y(n))/f'(y(n)) 
  */
 class Solution {
 public:
