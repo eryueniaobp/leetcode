@@ -1,0 +1,12 @@
+22:11 2013/9/26
+n*n矩阵 行列都是排序的，求出第K个元素 
+
+Solution 1: 
+	直接排序 , O(n^2logn) 
+Solution 2:
+　　　　利用求数组 k-th的 分治算法， O(n^2)  
+Solution 3:  
+         Paper :  Generalized selection and ranking Sorted matrices  O(n) 的算法 
+        基本思路： 每次四分，利用每个小块 的最大值序列的 p-th 和最小值序列的 q-th ，排除尽可能多的 小块 . 
+
+    
