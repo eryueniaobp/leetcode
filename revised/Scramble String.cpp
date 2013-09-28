@@ -1,5 +1,5 @@
 /**
- * time complexit: O(n^3) 
+ * time complexit: O(n^4) 
  * 采用前一个版本的递归写法 +　状态保存，也是这个复杂度，只是没有这个代码好看 
  */
 class Solution {

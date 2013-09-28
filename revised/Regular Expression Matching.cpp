@@ -19,7 +19,7 @@ public:
 		}
 		else
 		{
-			while(*p == *s || ((*p) == '.' && (*s) != 0))
+			while(*p == *s || ((*p) == '.' && (*s) != 0)) // 处理 a*覆盖到的部分 * = 0 开始 到最大覆盖的部分 
 			{
 				if(isMatch(s, p + 2))
 				{
@@ -27,7 +27,7 @@ public:
 				}
 				s++;
 			}
-			return isMatch(s, p + 2);
+			return isMatch(s, p + 2); // *s != *p 跳过 a*覆盖的部分 ，比较后面的可行性
 
 		}
 		
