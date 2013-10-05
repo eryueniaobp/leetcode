@@ -4,9 +4,15 @@ n*n矩阵 行列都是排序的，求出第K个元素
 Solution 1: 
 	直接排序 , O(n^2logn) 
 Solution 2:
-　　　　利用求数组 k-th的 分治算法， O(n^2)  
+　　　　利用求数组 k-th的分治算法， O(n^2)  
 Solution 3:  
          Paper :  Generalized selection and ranking Sorted matrices  O(n) 的算法 
         基本思路： 每次四分，利用每个小块 的最大值序列的 p-th 和最小值序列的 q-th ，排除尽可能多的 小块 . 
+        *** 这个算法不太容易理解 
+Solution 4:效率较高，且容易理解　　
+　　　　 假设矩阵中的数是整数  ； （非整数的话，可以离散化成整数)
+         nlog(max -min )＝　nlog(m[n-1][n-1] - m[0][0])　；　枚举 [min,max]中的每个数, 每个数用 O(n)的时间查找和确认 . 
+         具体办法：  
+         从左下角开始，< ，则向上走；> 则向右走，最终就是 O(n)的查找效率 。   
 
-    
+          reference: http://www.51nod.com/question/index.html#!questionId=643 
