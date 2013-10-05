@@ -1,5 +1,8 @@
 /**
  * O(n)
+ * i ~ first[i]  first[i] 第一次出现重复的位置 
+ * s[i] = s[next[i]]  
+ * s[k] = s[first[i]] , i<=k < first[i] 
  */
 class Solution {
     int hash[256];

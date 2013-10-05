@@ -1,29 +1,21 @@
 /**
- * log(n) 
+ * log(n)
  */
 class Solution {
+//divide-and-conquer
+//classic
 public:
-    double pow(double x, int n) {
-        // Start typing your C/C++ solution below
-        // DO NOT write int main() function
-        if(n == 0 ) return 1.;
-        if(n == INT_MIN ) return 1/(pow(x,INT_MAX)*x);
-        if(n < 0 ) return 1/pow(x,-n);
-         
-        if( n == 1 ) return x;
-        double b = x; 
-        int i = 2;
-        while(n/i>0 ){
-            x = x*x;
-            if(n/(i*2) > 0 ) {
-                i = i*2 ;
-            }else{
-                break;
-            }
-        }
-        return x * pow(b,n-i);
-    }
+	double pow(double x, int n) {
+		if (n == 0) return 1.0;
+		// Compute x^{n/2} and store the result into a temporary
+		// variable to avoid unnecessary computing
+		double half = pow(x, n / 2);
+		if (n % 2 == 0)
+			return half * half;
+		else if (n > 0)
+			return half * half * x;
+		else
+			return half * half / x;
+	}
 };
-
-
 
