@@ -1,7 +1,10 @@
 /**
  * O(n)的算法 n = S.size() ; 
- * O(k * ( n/k + n/k ) ) = O(n) 
- * 144 ms  
+ * O(k * ( n/k + n/k ) ) = O(n)  k = L[0].size()
+ * 144 ms  ,
+ *
+ * ref: http://www.cnblogs.com/remlostime/archive/2012/11/19/2777595.html  
+ * O(n*l)  n= S.size() ,l=L.size() 的算法比较好写
  * */
 class Solution {
     private:

@@ -27,10 +27,18 @@ public:
                 mark[S[end]] -- ;
             }
             if (count == 0) {
-                while(tmark[S[start]] == 0 || mark[S[start]] < 0 ){
+                while(true){
+                    if(tmark[S[start]] == 0 ) start ++ ; 
+                    else{
+                        if(mark[S[start]] == 0 ) break; // [start,end] 是一个包含区间 且  S[start] S[end]都在T中
+                        mark[S[start]] ++ ;
+                        start ++ ; 
+                    }
+                }
+                /*while(tmark[S[start]] == 0 || mark[S[start]] < 0 ){
                     if(mark[S[start]] < 0 ) mark[S[start]] ++ ;
                     start++;
-                }
+                }*/
                 if (minSize > end - start + 1){
                     minSize = end - start + 1;
                     minStart = start;
@@ -44,5 +52,3 @@ public:
         return string(S, minStart, minSize);        
     }
 };
-
-

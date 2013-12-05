@@ -1,5 +1,5 @@
 // http://www.cnblogs.com/rainydays/archive/2011/05/14/2046419.html  
-// 非常清晰的线段树的代码 
+// 非常清晰的线段树的代码  染色
 #include <iostream>
 #include <cstdio>
 #include <cstdlib>
