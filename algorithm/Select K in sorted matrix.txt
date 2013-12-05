@@ -16,3 +16,8 @@ Solution 4:效率较高，且容易理解　　
          从左下角开始，< ，则向上走；> 则向右走，最终就是 O(n)的查找效率 。   
 
           reference: http://www.51nod.com/question/index.html#!questionId=643 
+Solution 5:直接使用 最小堆 来做。。 弹出堆顶元素为m[i][j],新加入为 m[i+1][j] m[i][j+1] 总体上  O(KlogK)算法可解.. 
+       
+ 变形题目： 给两个有序数组A，B，长度n 求Ai+Bj的第k大值。。 特殊的，k = n . 
+
+Solution 6: http://wolf5x.cc/blog/algorithm/young-tableau-smallest-kth   O(N)适用于  k = n的情况 
