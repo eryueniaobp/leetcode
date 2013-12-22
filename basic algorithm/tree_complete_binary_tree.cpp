@@ -79,39 +79,31 @@ int rightDepth(TreeNode *root) {
     }
     return d ; 
 }
-// 向完全二叉树插入新节点 time-complex: (logn)^2
-void insertNodeToCompleteBinaryTree(TreeNode* root , TreeNode *node){
-    if(root == NULL ) return ;
-    int ld = leftDepth(root) ; 
-    int rd = rightDepth(root) ;  
+// 向完全二叉树插入新节点 time-complex: (logn)^2 
+void insertNodeToCompleteBinaryTree(TreeNode* root,TreeNode* node){
+    if(root==NULL) return; 
     TreeNode * temp = NULL ; 
-    while ( ld != rd ) {
-        cout<<"Now Root= " << root->data<<endl;
-        ld = leftDepth(root->left) ; 
-        rd = rightDepth(root->left )  ;
-
-        if( ld == rd ) {
-            temp = root->right ;
+    while(leftDepth(root) != rightDepth(root)) {
+        int l1 = leftDepth(root->left) ; 
+        int r1 = rightDepth(root->left)  ; 
+        // assert l1 > 0 && r1 > 0  
+        if(l1 == r1 ) {
+            if(leftDepth(root->right) ==  0) {
+                root->right = node ;
+                return ;
+            }
+            root = root->right;
         }else{
-            temp = root->left ; 
+            //assert ( l2 == r2 )  
+            root = root->left ; 
         }
-
-        ld = leftDepth(temp)  ; 
-        rd = rightDepth(temp)  ; 
-        if( ld != rd ) root = temp ;
     }
-    cout<<"Finally Root= " << root->data<<endl;
-    if( ld == 0 && rd == 0 ) {
-        root->right = node ; 
-    }else{
-
-        // insert to left most 
-        while (root->left != NULL ) {
-            root = root->left; 
-        }
-        root->left = node ;  
+    while(root->left != NULL ) {
+        root = root->left; 
     }
+    root->left = node ; 
 }
+
 int main()
 {
     vector<TreeNode* > nodes  ; 
