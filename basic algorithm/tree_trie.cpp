@@ -25,18 +25,17 @@ public:
 };
 class Trie{
 public:
-    Node entry[26];
+    Node **entry;
     Trie(){
+		entry = new Node*[26] ;
+		for(int i = 0 ; i< 26 ;i ++ ){
+			entry[i] = NULL ;
+		}
     }
     void add(const char * word,int len){
-        int pos = word[0] - 'a' ; 
-        entry[pos].count++ ;
-        if( len == 1 ) {
-			entry[pos].endCount ++ ;
-			return;
-		}
-        Node **pool = entry[pos].children;
-        int  i = 1 ;
+        
+        Node **pool = entry;
+        int  i =  0  ,pos =  0 ; 
         while(i < len ) {
             pos = word[i] - 'a' ; 
             if(pool[pos] == NULL ){
@@ -51,14 +50,10 @@ public:
         }
     }
     int query(const char *word,int len){
-        int pos = word[0] - 'a' ; 
-
-        if(entry[pos].count <= 0  ) {
-            return 0; 
-        }
-        Node **pool = entry[pos].children;
-        int count = entry[pos].endCount; 
-        for(int i = 1 ; i< len  ; i++ ){
+        
+        Node **pool = entry;
+        int count = 0 , pos = 0 ; 
+        for(int  i= 0  ; i< len  ; i++ ){
             pos = word[i] - 'a' ; 
             if(pool[pos] == NULL || pool[pos]->count <= 0 ) {
 
@@ -74,7 +69,7 @@ public:
 int main() 
 {
     Trie trie ;
-    int count = 10 ; 
+    int count = 100 ; 
     while( count -- ) {
         int len = rand()%10 + 1  ; 
         char * word = new char[len+1] ;
