@@ -20,9 +20,9 @@ public:
                 s.push(p) ; 
                 p = p->left; 
             }
-            if(!s.empty()) {
+            if(!s.empty()) { 
                 p = s.top() ; 
-                s.pop(); 
+                s.pop();  //放右节点时，把当前根弹出.栈中的顺序是ok的
                 p = p->right; 
             }
         }
