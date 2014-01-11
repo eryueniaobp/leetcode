@@ -64,3 +64,56 @@ public:
     }
 };
 
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode *partition(ListNode *head, int x) {
+        if(head == NULL) return NULL; 
+        ListNode *rhead = NULL , *rtail = NULL ; 
+        ListNode *ltail = NULL , *lhead = NULL ; 
+        while(head!=NULL && head->val < x ) {
+            if(lhead == NULL )  lhead = head ; 
+            ltail = head ;
+            head = head->next; 
+        }
+        
+        while(head!= NULL) {
+            while(head!=NULL && head->val >= x) {
+                if(rhead == NULL) rhead = head; 
+                rtail = head; 
+                head = head->next; 
+            }
+            if(head == NULL) {
+                return lhead!=NULL ? lhead : rhead; 
+            }else{
+                if(ltail==NULL) {
+                    lhead = head ; 
+                    ltail = head; 
+                    rtail->next = head->next; 
+                    
+                    ltail->next = rhead; 
+                    
+                }else{
+                    ltail->next = head ; 
+                    ltail = head; 
+                    
+                    rtail->next = head->next; 
+                    ltail->next = rhead ; 
+                }
+                head = rtail->next; 
+            }
+        }
+        
+        return lhead; 
+    }
+};
+
+
