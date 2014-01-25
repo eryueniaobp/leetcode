@@ -49,3 +49,52 @@ public:
 };
 
 
+/**
+ * Definition for an interval.
+ * struct Interval {
+ *     int start;
+ *     int end;
+ *     Interval() : start(0), end(0) {}
+ *     Interval(int s, int e) : start(s), end(e) {}
+ * };
+ * Prerequisite: intervals is sorted, 
+ * Time:  O(n)
+ * 直接merge就可以 ..比上面的方法更加直接。。如果不需要排序的话，那么返回的vector也不需要排序.
+ */
+class Solution {
+public:
+    vector<Interval> insert(vector<Interval> &intervals, Interval newInterval) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        if(intervals.size() == 0 ) {
+            intervals.push_back(newInterval);
+            return intervals;
+        }
+        vector<Interval> ret; 
+        int size = intervals.size() ; 
+        int i = 0 ; 
+     
+        for (  i = 0 ; i < intervals.size() ; i++){
+            if(intervals[i].start > newInterval.end || intervals[i].end < newInterval.start)  {
+                ret.push_back(intervals[i]) ; 
+            }else{
+                newInterval.start = min ( newInterval.start , intervals[i].start) ; 
+                newInterval.end = max ( newInterval.end, intervals[i].end) ; 
+            }
+        }
+        
+        for( i = 0 ; i < ret.size() ; i ++  ) {
+            if(ret[i].start < newInterval.start)  continue; 
+            ret.insert(ret.begin() + i  ,newInterval) ; 
+            break; 
+        }
+        if(ret.size() == i ) {
+            ret.push_back(newInterval) ; 
+            return ret; 
+        }
+        return ret;
+    }
+};
+
+
+
