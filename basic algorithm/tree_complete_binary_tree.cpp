@@ -103,6 +103,36 @@ void insertNodeToCompleteBinaryTree(TreeNode* root,TreeNode* node){
     }
     root->left = node ; 
 }
+/** 
+ *  这个思路更加清晰一些 
+void insertNodeToCompleteBinaryTree(TreeNode* root,TreeNode* node){
+    if(root==NULL) return; 
+    TreeNode * temp = NULL ; 
+    if(leftDepth(root) != rightDepth(root)) {
+		while(true) { 
+	        int l1 = leftDepth(root->left) ; 
+	        int r1 = rightDepth(root->left)  ; 
+	        // assert l1 > 0 && r1 > 0  
+	        if(l1 == r1 ) {
+	            if(leftDepth(root->right) ==  0) {
+	                root->right = node ;
+	                return ;
+	            }
+	            root = root->right;
+	        }else{
+	            //assert ( l2 == r2 )  
+	            root = root->left ; 
+	        }
+		}
+    }else{
+	    while(root->left != NULL ) {
+	        root = root->left; 
+	    }
+	    root->left = node ; 
+	}
+}
+
+*/  
 
 int main()
 {

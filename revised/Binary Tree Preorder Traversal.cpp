@@ -16,7 +16,7 @@ public:
         TreeNode * p = root; 
         while( p!= NULL || !s.empty() ) {
             while(p != NULL ) {
-                ret.push_back(p->val) ; 
+                ret.push_back(p->val) ; // visit 
                 s.push(p) ; 
                 p = p->left; 
             }
