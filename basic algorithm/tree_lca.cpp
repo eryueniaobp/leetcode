@@ -6,6 +6,7 @@
  *
  * LCA -> RMQ   
  * http://www.cppblog.com/myjfm/archive/2011/05/12/146282.aspx
+ * 注意：如果用 记录路径的方法，需要额外的空间记录，而且显得非常笨。。 
  */ 
 
 // Binary Tree 
@@ -29,5 +30,6 @@ int LCA(lca *root, lca *a, lca *b, lca **result)
     }
     return l + r;
 }
+
 
 
