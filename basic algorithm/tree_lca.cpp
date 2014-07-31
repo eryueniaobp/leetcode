@@ -30,6 +30,10 @@ int LCA(lca *root, lca *a, lca *b, lca **result)
     }
     return l + r;
 }
-
+/*
+ * 离线算法:
+ *  http://www.cnblogs.com/algorithms/archive/2012/07/07/2580290.html 
+ *  http://blog.csdn.net/geniusluzh/article/details/6609685 浏览器 
+ * */
 
 
