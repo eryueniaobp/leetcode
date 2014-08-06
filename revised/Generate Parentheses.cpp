@@ -24,6 +24,6 @@ public:
         ret.clear();
         solve(0, 2 * n, 0, 0, "");
         return ret;
-    }
+    }  
 };
 
