@@ -5,6 +5,10 @@ class Solution {
 private:
     vector<string> ret;
 public:
+    /**
+     * leftNum : 未配对的 ( 的个数 
+     * leftNumTotal:　字符串中( 的总数 
+     */
     void solve(int dep, int maxDep, int leftNum, int leftNumTotal, string s) {
         if (leftNumTotal * 2 > maxDep)
             return;
