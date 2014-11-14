@@ -34,6 +34,34 @@ public:
 	}
 };
 /**
+ *  + * 的情况 
+ */
+bool match(const char * p , const char *s){
+    if ( 0 == *p && 0 == *s ) return true; 
+    
+    if( *(p+1) != '*' && *(p+1) != '+' ) {  // ab* a 
+        return (*p == *s ) && match( p+1 ,s+1 ) ; // match( "b*",\0) 
+    }else if( *(p+1) == '*' ) {
+        while(  *p == *s ) { 
+            if ( match ( p + 2 ,s ) ) {
+                return true; 
+            }
+            s ++ ; 
+        }
+        return match(p+2, s ) ; // pass the current star.  /// match ( null , null) ; true. 
+    }else if( *(p+1) == '+' ) {  // here ! 
+        if(*p != *s ) return false; // must match one 
+        while ( *p == *s ) {
+            s++ ;  /// 
+            if( match ( p +2 ,s) ) return true; // match("ab" , "ab" ) ;
+        } 
+        return match(p+2 , s ) ;      // match ( "ab","b") ; 
+    }else{
+        
+    } 
+}
+
+/**
  * DP 版本
  */
 class Solution {
