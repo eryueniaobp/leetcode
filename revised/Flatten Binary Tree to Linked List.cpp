@@ -1,6 +1,9 @@
 /**
  * Time: O(n) 
  * Space: O(1)
+ * Step 1 . 左变右 
+ * Step 2 . 取原左子树的最右节点，接到原右节点上    
+ * 重复上面两个步骤即可
  */
 class Solution {
 public:
