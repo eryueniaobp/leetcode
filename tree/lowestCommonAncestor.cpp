@@ -29,5 +29,18 @@ int LCA(lca *root, lca *a, lca *b, lca **result)
     }
     return l + r;
 }
-
-
+/*** 更加简洁的写法 **/  
+TreeNode LCA(TreeNode root,TreeNode p , TreeNode q) {
+    if (root == null || p == null || q == null ) return null; 
+    if( root == p || root == q ) return root ; 
+    TreeNode l = LCA(root.left ,p , q) ; 
+    TreeNode r = LCA(root.right , p , q) ; 
+    if( l != null && r != null ) {
+        return root ; 
+    }
+    return l != null? l :r  ; 
+}
+/**  
+ *  如果 p == q ,则上述会返回 p   
+ *  如果 p 或 q 有一个不在树中，也会返回 p or q ( which is in the tree) .
+ */ 

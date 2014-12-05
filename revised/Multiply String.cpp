@@ -1,6 +1,7 @@
 /**
  * 模拟运算即可 
  * O(m*n)
+ * 并不需要两位两位的计算
  */
 class Solution {
 public:
