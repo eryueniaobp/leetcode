@@ -33,3 +33,45 @@ public class Solution {
     }
     
 }
+
+
+public class Solution {
+    /**
+     * @param m: An integer m denotes the size of a backpack
+     * @param A: Given n items with size A[i]
+     * @return: The maximum size
+     */
+    int max = Integer.MIN_VALUE;
+    public int backPack(int m, int[] A) {
+        // write your code here
+        boolean [][]dp = new boolean[m+1][A.length+1]  ;
+        for(int i = 0 ; i <= m ; i++ )  dp[i][0] = false ; 
+        for(int i = 0 ; i <= A.length ; i++) dp[0][i] = true ; 
+        dp[0][0] = true; 
+        int max = -1 ; 
+        ///if(A[0]<=m) { dp[A[0]][1]  = true ;max = A[0] ; } 
+        
+        // dp[A[0]][1] = 1 ;  
+        
+       
+            for(int j = 1; j<=A.length ; j++) {
+                 for(int i  = 1 ; i <= m ;i++){ 
+                if( i >= A[j-1] ) { // i size .
+                    dp[i][j]  = dp[i][j-1] || dp [ i - A[j-1] ] [ j-1 ]    ;  
+                    
+                }else {
+                    dp[i][j] = dp[i][j-1] ; 
+                }
+                
+                if(dp[i][j]){
+                    max = i ; 
+                }
+               
+            }
+        }
+        
+        return max   ;
+    }
+    
+}
+
