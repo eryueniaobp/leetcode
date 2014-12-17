@@ -1,4 +1,6 @@
 // lintcode tle. improve more
+// Search Space is Graph .not tree.. Recursively Search will do a lot of useless work.. 
+// DP is better. 
 class Solution {
 public:
     /**
