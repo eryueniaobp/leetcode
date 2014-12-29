@@ -26,4 +26,22 @@ public:
         }
     }
 };
-
+void sortKColors(vector<int> &colors,int k){
+    int size = colors.size() ; 
+    if(size <= 1 ) return ; 
+    if(k == 1 ) return  ; 
+    for(int i = k ; i> 0 ; i --){
+        int st = 0 , end = size - 1 ; 
+        while(st <= end){
+            while(st<=end && colors[end] == i ) end -- ; 
+            if(st > end) break;
+            while(st<=end && colors[st] != i ) st ++  ; 
+            if(st>end) break ; 
+            colors[st] = colors[end] ; 
+            colors[end] = i ; 
+            st++ ; 
+            end -- ; 
+        }
+        size = st ; 
+    }
+}

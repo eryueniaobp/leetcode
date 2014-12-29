@@ -97,4 +97,58 @@ public:
 };
 
 
+// 
+/**
+ * Definition of Interval:
+ * public classs Interval {
+ *     int start, end;
+ *     Interval(int start, int end) {
+ *         this.start = start;
+ *         this.end = end;
+ *     }
+ */
+
+class Solution {
+    /**
+     * Insert newInterval into intervals.
+     * @param intervals: Sorted interval list.
+     * @param newInterval: A new interval.
+     * @return: A new sorted interval list.
+     */
+    public ArrayList<Interval> insert(ArrayList<Interval> intervals, Interval newInterval) {
+        ArrayList<Interval> result = new ArrayList<Interval>();
+        if(intervals == null || intervals.size() == 0 ) {
+            result.add(newInterval) ; 
+            return result ; 
+        }
+        // write your code here
+        int size = intervals.size() ; 
+        
+        int start = newInterval.start , end = newInterval.end ; 
+        for(int i = 0 ; i<size ; i++ ){
+            Interval val = intervals.get(i) ; 
+            if(start == -1 ) {
+                result.add(val) ; 
+                continue;  
+            }
+            if(val.end < start ) {
+                result.add(val) ; 
+            }else if ( val.start > end) {
+                result.add(new Interval(start,end) ) ; 
+                result.add(val) ;  
+                start = end = - 1; 
+            }else {
+                // intersect .. 
+                start = start < val.start? start:val.start ; 
+                end = end > val.end? end : val.end ; 
+                
+            }
+        }
+        
+        if(start != -1 ) {
+            result.add(new Interval(start,end)) ; 
+        }
+        return result ; 
+    }
+}
 
