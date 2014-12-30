@@ -1,7 +1,7 @@
 /*
-ÏµÁĞÌâÄ¿£ºÏÂÎÄµÄÁ½´Î¶¼¿ÉÒÔÌæ»»Îª Å¼Êı´Î . 
+ç³»åˆ—é¢˜ç›®ï¼šä¸‹æ–‡çš„ä¸¤æ¬¡éƒ½å¯ä»¥æ›¿æ¢ä¸º å¶æ•°æ¬¡ . 
 
-Q1:  int A[N] , Ö»ÓĞÒ»¸öÊı³öÏÖÁËÒ»´Î£¬±ğµÄÊı¶¼³öÏÖÁ½´Î£¬Çó³öÏÖÒ»´ÎµÄÊı .  
+Q1:  int A[N] , åªæœ‰ä¸€ä¸ªæ•°å‡ºç°äº†ä¸€æ¬¡ï¼Œåˆ«çš„æ•°éƒ½å‡ºç°ä¸¤æ¬¡ï¼Œæ±‚å‡ºç°ä¸€æ¬¡çš„æ•° .  
 */ 
 int find_single_num(int A[] , int N) {
 	int ret = 0 ; 
@@ -10,9 +10,9 @@ int find_single_num(int A[] , int N) {
 	}
 	return ret; 
 }
-/* Q2 :  int A[N] ,ÓĞÁ½¸öÊı³öÏÖÁËÒ»´Î£¬±ğµÄ¶¼³öÏÖÁ½´Î£¬ÇóÕâÁ½¸öÊı*/ 
+/* Q2 :  int A[N] ,æœ‰ä¸¤ä¸ªæ•°å‡ºç°äº†ä¸€æ¬¡ï¼Œåˆ«çš„éƒ½å‡ºç°ä¸¤æ¬¡ï¼Œæ±‚è¿™ä¸¤ä¸ªæ•°*/ 
 /*
- * ÏÈÇó³ö eor = a^b , È»ºóÄÃeorµÄ×îµÍÎ»1½«Ô­Êı×é·Öµ½Á½±ß £¬ Ã¿±ß¶¼ÔÙÇó Òì»ò£¬¾ÍÇó³ö a ºÍ b ÁË .
+ * å…ˆæ±‚å‡º eor = a^b , ç„¶åæ‹¿eorçš„æœ€ä½ä½1å°†åŸæ•°ç»„åˆ†åˆ°ä¸¤è¾¹ ï¼Œ æ¯è¾¹éƒ½å†æ±‚ å¼‚æˆ–ï¼Œå°±æ±‚å‡º a å’Œ b äº† .
  */
 void find_pair(int A[],int N , int &a ,int &b ) {
 	int eor = 0 ; 
@@ -20,11 +20,10 @@ void find_pair(int A[],int N , int &a ,int &b ) {
 		eor = eor ^ A[i] ; 
 	}
 	
-	int low = eor - (eor & ( eor -1 ) );   // & µÄ²Ù×÷ÓÅÏÈ¼¶ºÜµÍµÄ£¬±ØĞëÓÃÍâÃæµÄÀ¨ºÅ  
-	
+    int low = eor & (eor ^ ( eor - 1)) ;	
 	int i = 0 , j = N -1 ; 
 	while ( i < j ) {
-		while( i < N && (A[i] & low) > 0 )  i ++ ;
+		while( i < N && (A[i] & low) == low )  i ++ ; // low maybe Integer.MIN_VALUE . must check == low
 		while( j >=0 && (A[j] & low) == 0 ) j--;  
 		if( i <j ) swap(A[i],A[j]) ; 
 	}
@@ -38,14 +37,39 @@ void find_pair(int A[],int N , int &a ,int &b ) {
 		b = b^A[k] ; 
 	}
 }
-/*Q3 : int A[N] , ÓĞÈı¸öÊı³öÏÖÁËÒ»´Î£¬±ğµÄ¶¼ÊÇÁ½´Î£¬ÇóÕâÈı¸öÊı */
+/*Q3 : int A[N] , æœ‰ä¸‰ä¸ªæ•°å‡ºç°äº†ä¸€æ¬¡ï¼Œåˆ«çš„éƒ½æ˜¯ä¸¤æ¬¡ï¼Œæ±‚è¿™ä¸‰ä¸ªæ•° */
 /*
  *  1.  eor = a^b^c  , 
  *  2.  a ^ eor = b^c ; b ^ eor = a^c ; c ^ eor = a^b 
- *  3.  (b^c) ^(a^c)^ ( a^b) =  0   => ³ıÈ¥×îÓÒµÄ0ºó×º£¬±ØÈ»ÊÇÁ½¸ö1 £¬Ò»¸ö0  . ÈçºÎ»®·ÖÄØ?  
- *  http://www.cnblogs.com/luxiaoxun/archive/2012/09/08/2676610.html Õâ¸öµØ·½Ğ´µÃ±È½ÏÏêÏ¸ . 
+ *  3.  (b^c) ^(a^c)^ ( a^b) =  0   => é™¤å»æœ€å³çš„0åç¼€ï¼Œå¿…ç„¶æ˜¯ä¸¤ä¸ª1 ï¼Œä¸€ä¸ª0  . å¦‚ä½•åˆ’åˆ†å‘¢?  
+ *  http://www.cnblogs.com/luxiaoxun/archive/2012/09/08/2676610.html è¿™ä¸ªåœ°æ–¹å†™å¾—æ¯”è¾ƒè¯¦ç»† . 
  * 
  */
 void find_triple(int A[],int N, int &a,int &b,int &c) {
 }
-
+/**
+* Q4: int A[N] , N = 3*n + 1  , only one number occurs one time . others occur 3 times each . 
+* http://lintcode.com/zh-cn/problem/single-number-ii/
+*/
+public class Solution {
+	/**
+	 * @param A : An integer array
+	 * @return : An integer 
+	 */
+    public int singleNumberII(int[] A) {
+        // write your code here
+        int []bits = new int[32]; Arrays.fill(bits, 0) ; 
+        for(int i = 0 ;i < A.length ; i++){
+            for(int j = 0 ; j < 32 ; j++ ) {
+                bits[j] += ((A[i]>>j)&1); 
+            }
+        }
+        int ret =  0 ; 
+        for(int j = 0 ; j< 32 ; j++){
+            if(bits[j] % 3 != 0 ) {
+                ret |=  (1<<j) ;
+            }
+        }
+        return ret ; 
+    }
+}
