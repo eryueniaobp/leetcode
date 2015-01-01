@@ -18,6 +18,7 @@
 /**
  * O(n) 
  * 先转成数组，然后再转化bst,时间复杂度就降低了
+ * It's not proper solution. especially in an interview .
  */
 class Solution {
 public:
@@ -46,4 +47,35 @@ public:
         node->right = makeTree(num,pos+1,e);
         return node;
     } 
+};
+/*just recurse on the list. proper solution*/
+/** 
+ T(n) = O(n) + 2T(n/2) ,like quick-sort .
+ So time complexity will be O(nlogn) 
+*/
+class Solution{
+public:
+    TreeNode* sortedListToBST(ListNode *head){
+        int len = 0 ; 
+        ListNode * n = head ; 
+        while(n!=NULL){
+            len++ ; 
+            n = n->next;
+        }
+        return buildTree(head, 0 , len -1 ) ; 
+    }
+    TreeNode *buildTree(ListNode *node , int start ,int end){
+        if(start > end ) return NULL ; 
+        int mid = start + (end-start)/2 ;  
+        ListNode *p = node ;
+        int i = start ; 
+        while(i < mid) {
+            i++ ; p = p->next ; 
+        }
+        TreeNode *left = buildTree(node , start ,mid-1) ; 
+        TreeNode *root = new TreeNode(p->val) ; 
+        root->left = left ; 
+        root->right = buildTree(p->next, mid+1,end) ; 
+        return root ; 
+    }
 };

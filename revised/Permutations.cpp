@@ -31,3 +31,62 @@ public:
     }
 };
 
+/** non-recursive and it will return unique permutations . **/ 
+class Solution {
+    /**
+     * @param nums: A list of integers.
+     * @return: A list of permutations.
+     */
+    public void swap(ArrayList<Integer> nums , int i ) {
+        for(int j = nums.size() - 1 ; j >= i  ; j-- ) {
+            if(nums.get(j) > nums.get(i-1) ) {
+                Collections.swap(nums,i-1 , j) ;
+                break; 
+            }
+        }
+        
+    }
+    public void reverse(ArrayList<Integer> nums , int i ) { 
+        int j =  i , k = nums.size() -1  ;
+        while( j < k ) {
+            Collections.swap(nums,j,k) ; 
+            j++ ; 
+            k--; 
+        }
+    }
+    
+    public ArrayList<ArrayList<Integer>> permute(ArrayList<Integer> nums) {
+        ArrayList<ArrayList<Integer>> ps = new ArrayList<ArrayList<Integer>>() ; 
+        if(nums == null || nums.size() == 0 ) return ps; 
+        Collections.sort(nums) ; 
+        
+        ArrayList<Integer> perm = new ArrayList<Integer>() ;
+        perm.addAll(nums) ; 
+        ps.add(perm) ;
+        while(true){
+            int i = nums.size() - 1 ; 
+            int cur = 0 , prev = 0 ; 
+            while(i>=1){
+                cur = nums.get(i) ; 
+                prev = nums.get(i-1)  ; 
+                if(prev >= cur) {
+                    i-- ; 
+                }else{
+                    break ; 
+                }
+            }
+            if(i == 0 )  break;  
+            swap( nums, i )  ;
+            reverse(nums , i ) ; 
+            perm = new ArrayList<Integer>() ; 
+            perm.addAll(nums) ; 
+            ps.add(perm) ; 
+            
+        }
+        return ps ; 
+        
+    }
+}
+
+
+
