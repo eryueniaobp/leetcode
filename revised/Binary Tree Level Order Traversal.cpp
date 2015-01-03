@@ -46,4 +46,38 @@ public:
     }
 };
 
+/** better solutin of java **/
+public class Solution {
+    /**
+     * @param root: The root of binary tree.
+     * @return: Level order a list of lists of integer
+     */
+    public ArrayList<ArrayList<Integer>> levelOrder(TreeNode root) {
+        ArrayList<ArrayList<Integer>> ret = new ArrayList<ArrayList<Integer>>() ; 
+        if(root == null) return ret; 
+        int pcnt = 1 , cnt = 0 ; 
+        Queue<TreeNode> queue  = new LinkedList<TreeNode>() ;
+        queue.offer(root) ; 
+        ArrayList<Integer> row = new ArrayList<Integer>() ; 
+        while(pcnt > 0  ) {
+            TreeNode n = queue.poll() ; 
+            row.add(n.val) ; 
+            if(n.left != null)  { 
+                queue.offer(n.left ) ; cnt++ ; 
+            }
+            if(n.right!=null){
+                queue.offer(n.right) ; cnt++ ;
+            }
+            pcnt--; 
+            if(pcnt == 0  ) {
+                ret.add(row) ; 
+                row = new ArrayList<Integer>() ; 
+                pcnt = cnt ; 
+                cnt = 0 ; 
+            }
+        }
+        return ret; 
+    }
+}
+
 
