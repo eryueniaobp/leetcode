@@ -1,5 +1,8 @@
 /**
  * 递归版本 
+ * Key Points: 
+ * 1:   (*p =='.' && *(s+i)!=0)   . cann't match \0 
+ * 2:   if( 0 == *p) return 0 == *s; // if *s == 0 ,will need more analysis with p .
  */
 class Solution {
 public:
@@ -19,18 +22,15 @@ public:
 		}
 		else
 		{
-			while(*p == *s || ((*p) == '.' && (*s) != 0)) // 处理 a*覆盖到的部分 * = 0 开始 到最大覆盖的部分 
-			{
-				if(isMatch(s, p + 2))
-				{
-					return true;
-				}
-				s++;
-			}
-			return isMatch(s, p + 2); // *s != *p 跳过 a*覆盖的部分 ，比较后面的可行性
-
+			int i = 0 ; 
+            while( (*p =='.' && *(s+i)!=0)  || *p == *(s+i) ) { 
+                i++ ;
+                if ( isMatch(s+i , p +2  ) ){  // X* matchs i Xs. i >=1
+                    return true; 
+                }
+            }
+            return isMatch(s , p+2) ; // X* matchs zero X. 
 		}
-		
 	}
 };
 /**

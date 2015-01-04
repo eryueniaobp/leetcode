@@ -27,4 +27,52 @@ public:
         return res;
     }
 };
+/** java **/
+public class Solution {
+    /**
+     * @param strs: A list of strings
+     * @return: A list of strings
+     */
+    public List<String> anagrams(String[] strs) {
+        List<Item> items= new ArrayList<Item>() ; 
+        for(String str:strs) {
+            items.add(new Item(str)) ; 
+        }
+        Collections.sort(items,new Comparator<Item>() {
+            public int compare(Item a , Item b) {
+                return a.sorted.compareTo(b.sorted) ; 
+            }    
+        }); 
+        List<String> ret = new ArrayList<String>() ; 
+        Item prev = null ;
+        boolean first = true; 
+        for(Item item:items) {
+            if(item.sortedEquals(prev)) {
+                if( first) { 
+                    ret.add(prev.raw) ; 
+                    first= false ;
+                }
+                ret.add(item.raw) ; 
+            }else{
+                first = true ; 
+                prev = item ;
+            }
+        }
+        return ret; 
+        
+    }
+    public static class Item {
+        String raw ; 
+        String sorted ; 
+        public Item(String str){
+            this.raw = str  ; 
+            char []arr = str.toCharArray() ; 
+            Arrays.sort(arr) ; 
+            sorted = new String(arr) ; 
+        }
+        public boolean sortedEquals(Item e) {
+            return sorted.equals(e==null?null:e.sorted) ; 
+        }
+    }
+}
 
