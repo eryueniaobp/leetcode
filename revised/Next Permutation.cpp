@@ -29,3 +29,100 @@ public:
     }
 };
 
+// java version 
+public class Solution {
+    /**
+     * @param nums: A list of integers
+     * @return: A list of integers that's next permuation
+     */
+      public void swap(ArrayList<Integer> nums , int i ) {
+        for(int j = nums.size() - 1 ; j >= i  ; j-- ) {
+            if(nums.get(j) > nums.get(i-1) ) {
+                Collections.swap(nums,i-1 , j) ;
+                break; 
+            }
+        }
+        
+    }
+    public void reverse(ArrayList<Integer> nums , int i ) { 
+        int j =  i , k = nums.size() -1  ;
+        while( j < k ) {
+            Collections.swap(nums,j,k) ; 
+            j++ ; 
+            k--; 
+        }
+    }
+    public ArrayList<Integer> nextPermuation(ArrayList<Integer> nums) {
+		
+        if(nums == null || nums.size() == 0 ) return nums; 
+      
+      
+            int i = nums.size() - 1 ; 
+            int cur = 0 , prev = 0 ; 
+            while(i>=1){
+                cur = nums.get(i) ; 
+                prev = nums.get(i-1)  ; 
+                if(prev >= cur) {
+                    i-- ; 
+                }else{
+                    break ; 
+                }
+            }
+            if(i > 0 ) {
+                
+                swap( nums, i )  ;
+            }
+            reverse(nums , i ) ; 
+            return nums; 
+         
+    }
+}
+
+// Previous permutation ...almost the same as above one .
+public class Solution {
+    /**
+     * @param nums: A list of integers
+     * @return: A list of integers that's previous permuation
+     */
+    public ArrayList<Integer> previousPermuation(ArrayList<Integer> nums) {
+		// write your code
+		if(nums == null || nums.size() == 0 ) return nums; 
+        int i = nums.size() - 1 ; 
+        int cur = 0 , prev = 0 ; 
+        while(i>=1){
+            cur = nums.get(i) ; 
+            prev = nums.get(i-1)  ; 
+            if(prev <= cur) { // change point 1 
+                i-- ; 
+            }else{
+                break ; 
+            }
+        }
+        swap( nums, i )  ;
+        reverse(nums , i ) ; 
+        return nums; 
+
+    }
+    public void swap(ArrayList<Integer> nums , int i ) {
+        if(i == 0 ) return  ;
+        for(int j = nums.size() - 1 ; j >= i  ; j-- ) {
+            if(nums.get(j) < nums.get(i-1) ) { // change point 2
+                Collections.swap(nums,i-1 , j) ;
+                break; 
+            }
+        }
+        
+    }
+    public void reverse(ArrayList<Integer> nums , int i ) { 
+        int j =  i , k = nums.size() -1  ;
+        while( j < k ) {
+            Collections.swap(nums,j,k) ; 
+            j++ ; 
+            k--; 
+        }
+    }
+
+}
+
+
+
