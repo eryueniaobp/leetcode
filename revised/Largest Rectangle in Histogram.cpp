@@ -1,5 +1,6 @@
 /**
- * O(n)的效率
+ * O(n)的效率 
+ * the solution is easy to understand than using stack .
  */
 struct Node{
     int val;
@@ -31,7 +32,7 @@ public:
         int max = INT_MIN ; 
         int tmp  ;
         for(int i = 0 ; i< hnodes.size() ; i ++ ){
-            tmp = hnodes[i].val * ( hnods[i].right - hnodes[i].left +1 ) ;
+            tmp = hnodes[i].val * ( hnodes[i].right - hnodes[i].left +1 ) ;
             if(tmp > max) {
                 max =tmp ;
             }
