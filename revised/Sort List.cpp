@@ -78,3 +78,61 @@ public:
         return p;
     }
 };
+
+// Quick sort .from friend LDCheng 
+
+/**
+ * Definition for ListNode.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int val) {
+ *         this.val = val;
+ *         this.next = null;
+ *     }
+ * }
+ */
+class Solution {
+    public: 
+    ListNode *sortList(ListNode *head) {
+        ListNode* newHead = new ListNode(INT_MIN);
+        newHead->next = head;
+        sortList2(newHead, NULL);
+        head = newHead->next;
+        delete newHead;
+        return head;
+    }
+
+    void sortList2(ListNode* head, ListNode* end) {
+        if (head == end || head->next == end || head->next->next == end) return;
+
+        ListNode* split = head->next;
+        head->next = head->next->next;
+
+        ListNode* small = head;
+        ListNode* pre = head;
+        ListNode* ptr = head->next;
+
+        while (ptr != end) {
+            while (ptr!=end && ptr->val >= split->val) pre = ptr, ptr = ptr->next;
+            if (ptr == end) break;
+            if (small->next == ptr) small = ptr, pre = ptr, ptr = ptr->next;
+            else {
+                pre->next = ptr->next;
+                ptr->next = small->next;
+                small->next = ptr;
+
+                small = ptr;
+                ptr = pre->next;
+            }
+        }
+
+        split->next = small->next;
+        small->next = split;
+
+        sortList2(head, split);
+        sortList2(split, end);
+    }
+}; 
+
+
