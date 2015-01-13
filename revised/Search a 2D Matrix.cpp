@@ -3,6 +3,7 @@
  * 1. Integers in each row are sorted from left to right.
  * 2. The first integer of each row is greater than the last integer of the previous row. 
  * prop 2 is important
+ * Young Tableau :   can be solved in O(m+n) .
  */
 class Solution {
 public:
