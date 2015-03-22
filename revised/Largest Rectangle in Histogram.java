@@ -15,10 +15,11 @@ public class Solution {
         java.util.Stack<Integer> stack = new java.util.Stack<Integer>();
         for (int i = 0; i < height.length; i++) {
             if (stack.empty() || height[stack.peek()] < height[i]) {
-                stack.push(i);
+                stack.push(i); // ascending sequence in the stack
             } else {
                 int start = stack.pop();
-                int width = stack.empty() ? i : i - stack.peek() - 1;
+                // it's easy to understand that width = stack.empty() ? i : i - start; but i - stack.peek()-1 ? 
+                int width = stack.empty() ? i : i - stack.peek() - 1; 
                 area = Math.max(area, height[start] * width);
                 i--;
             }

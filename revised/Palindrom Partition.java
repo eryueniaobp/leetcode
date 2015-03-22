@@ -1,5 +1,6 @@
 // Given a string s, partition s such that every substring of the partition is a palindrome.  
 // lintcode and leetcode
+// palin[i][j] O(N^2) dynamic programming
 import java.util.*  ;
 public class Solution {
     /**

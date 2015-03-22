@@ -1,5 +1,10 @@
 /**
  * O(n) 记录左边第一个未匹配括号的位置 即可
+ * Given a string containing just the characters '(' and ')', find the length of the longest valid (well-formed) parentheses substring.
+
+ For "(()", the longest valid parentheses substring is "()", which has length = 2.
+
+ Another example is ")()())", where the longest valid parentheses substring is "()()", which has length = 4.
  */
 struct Node{
     char c ;

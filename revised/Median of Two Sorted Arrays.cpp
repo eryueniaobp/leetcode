@@ -1,5 +1,6 @@
 /**
  * O(log(m+n)) 
+ * Reference: FindKLargest (  a similar question with this one .)
  */
 class Solution {
 public:
@@ -13,7 +14,10 @@ public:
         if (k <= 1)
             return min(A[0], B[0]);
 
-        int pa = min(k / 2, m), pb = k - pa;
+        int pa = min(k / 2, m), pb = k - pa; 
+
+        // KEY-POINT:  just shrink ONE array ,keep another !!! 
+        // very similar with FIndKLargest ! 
         if (A[pa-1] < B[pb-1])
         {
             return findKth(A + pa, m - pa, B, n, k - pa);

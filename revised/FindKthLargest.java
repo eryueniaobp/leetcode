@@ -2,6 +2,7 @@
 * quick-select algorithm: O(N) 
 * N ( 1 + 1/2 + 1/4 + 1/8 )  = N *2  .. 
 * Note: 1th largest number is the max number . not the the min number
+* Reference: Median of two sorted array 
 */
 class Solution {
     //param k : description of k

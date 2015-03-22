@@ -8,6 +8,7 @@ public:
         int i =  10;
         int j = 1 ;
         int backup = x;
+        // get : j = length(x) 
         while(x/10 > 0 ) {
             i = i *10 ;
             j++ ;

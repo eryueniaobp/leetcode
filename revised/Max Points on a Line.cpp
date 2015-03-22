@@ -6,7 +6,7 @@
  *     Point() : x(0), y(0) {}
  *     Point(int a, int b) : x(a), y(b) {}
  * };
- * O(n^2 + n^2logn)
+ * O(n * ( n+ nlogn +n))
  */
 
 class Solution {

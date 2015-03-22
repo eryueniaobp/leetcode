@@ -1,5 +1,6 @@
 /**
- * O(n) 一个经典算法 
+ * O(n) 一个经典算法  http://blog.csdn.net/ggggiqnypgjg/article/details/6645824  Manacher Alg
+ * Given a string S, find the longest palindromic substring in S. You may assume that the maximum length of S is 1000, and there exists one unique longest palindromic substring
  */
 class Solution {
     

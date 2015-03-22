@@ -1,6 +1,9 @@
 /**
  * 动归
  * O(n^2)
+ * For example, given s = "aab",
+
+ Return 1 since the palindrome partitioning ["aa","b"] could be produced using 1 cut.
  */
 class Solution {
 public:

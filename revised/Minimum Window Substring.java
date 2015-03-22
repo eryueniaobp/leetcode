@@ -1,4 +1,23 @@
 // O(n) . while(true) block is important .
+/**
+Given a string source and a string target, find the minimum window in source which will contain all the characters in target.
+
+Note
+If there is no such window in source that covers all characters in target, return the emtpy string "".
+
+If there are multiple such windows, you are guaranteed that there will always be only one unique minimum window in source.
+
+Example
+source = "ADOBECODEBANC" target = "ABC" Minimum window is "BANC".
+
+Challenge
+Can you do it in time complexity O(n) ?
+
+Clarification
+Should the characters in minimum window has the same order in target?
+
+    - Not necessary.
+*/
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,16 +50,19 @@ public class Solution {
             if(left(sarr[i]) >  0 ) {
                 cnt -- ;
             }
+            // if left(sarr[i]) <= 0 , it will get a negative value .
             subtract(sarr[i] , 1)  ;
 
             if (cnt == 0 && (left(sarr[i]) == 0 || sarr[i] == sarr[start])) {
                 // Only in this condition ,it may change the window size .
-                while (true) { // the while was meant to find the next right start!
+                // for example 
+                // find ABC in  ABACA 
+                while (true) { // the while was meant to find the next proper start!
                     if (ch2cnt.containsKey(sarr[start])) {
-                        if (left(sarr[start]) != 0) {
+                        if (left(sarr[start]) != 0) { // Precisely speaking , it should be < 0   impossible to be >0 
                             plus(sarr[start], 1);
                         } else {
-                            break;
+                            break; // must be == 0 
                         }
 
                     }
