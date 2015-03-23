@@ -5,7 +5,7 @@ Suppose a sorted array is rotated at some pivot unknown to you beforehand.
 
 Find the minimum element.
 
-You may assume no duplicate exists in the array.
+You may assume *no duplicate* exists in the array.
 */
 public class Solution {
     /**
@@ -17,7 +17,7 @@ public class Solution {
             return nums[0] ; 
         }
         int s = 0 , e = nums.length - 1; 
-        while(s <=e ){
+        while(s < e ){
             int mid = s + (e-s)/2 ; 
             if(nums[s] <= nums[mid] && nums[e] < nums[mid] ) { // point : <= ,not just < 
                 s = mid + 1; 
@@ -25,12 +25,9 @@ public class Solution {
                 e = mid ; 
             }else{
                 e = mid  ; 
-                if( s == e) {
-                    break; 
-                }
-            }
+           }
         }
-        return nums[e]  ;
+        return nums[e]  ; // nums[s] will also be ok .
     }
 }
 

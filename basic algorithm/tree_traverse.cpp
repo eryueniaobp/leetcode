@@ -4,6 +4,10 @@
 #include <string> 
 #include <vector>
 using namespace std;
+/** 
+* HINT: 
+*     The most valuable solution is iterative way without *visitNum* . See the solutions at the end of the file 
+*/
 class TreeNode {
 public:
 	TreeNode *left;
@@ -78,6 +82,7 @@ void middleOrder(TreeNode *root)
 		
 	}
 }
+//@deprecated see the solution in end of the file
 void preOrder(TreeNode *root) 
 {
 	if(root == NULL ) return; 

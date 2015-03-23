@@ -8,15 +8,49 @@
  * };
  * O(n) 遍历一遍
  */
+ // Solution 1 : the most direct way .using iterative way to solve it  
+
+public class Solution {
+    /**
+     * @param root: The root of binary tree.
+     * @return: True if the binary tree is BST, or false
+     */
+    public boolean isValidBST(TreeNode root) {
+        if (root == null) return true;
+        Stack<TreeNode> st = new Stack<TreeNode>(); 
+        TreeNode n = root;
+        boolean touch = false ; 
+        int pre = Integer.MIN_VALUE ; 
+        while(!st.isEmpty() || n!=null ) {
+            while(n!=null) {
+                st.push(n) ; 
+                n = n.left ; 
+            }
+            if(!st.isEmpty()){
+                n = st.pop() ; 
+                if( n.val > pre || (!touch && n.val == Integer.MIN_VALUE ) ) {
+                    pre = n.val ; 
+                }else{
+                    return false; 
+                }
+                touch = true ; 
+                n = n.right ; 
+            }
+        }
+        return true ; 
+    }
+}
+// Solution 2: the method is not very direct . but the code is most compact ! 
 class Solution {
 public:
     bool check(TreeNode *node, int leftVal, int rightVal)
     {
         if (node == NULL)
             return true;
-            
         return leftVal < node->val && node->val < rightVal && check(node->left, leftVal, node->val) &&
             check(node->right, node->val, rightVal);
+        //return check(node->left, leftVal, node->val) && (leftVal < node->val && node->val < rightVal) && check(node->right, node->val, rightVal);
+        //return check(node->left, leftVal, node->val) &&check(node->right, node->val, rightVal) &&  (leftVal < node->val && node->val < rightVal);
     }
     
     bool isValidBST(TreeNode *root) {

@@ -42,7 +42,7 @@ public class Solution {
                             continue;
                         }
                         
-                        int dif = Math.abs(j - A.get(i)) + D[i - 1][k];
+                        int dif = Math.abs(j - A.get(i)) + D[i - 1][k]; // key: D[i][j] 会累积D[i-1][k]的结果 构成了一个递推式
                         D[i][j] = Math.min(D[i][j], dif);
                     }
                 }
