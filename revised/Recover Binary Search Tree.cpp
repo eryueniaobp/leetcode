@@ -37,4 +37,50 @@ public:
         second->val=tmp;
     }
 };
+// -------------------------------------------------------------------
+// traverse iteratively 
 
+/**
+ * Definition for binary tree
+ * public class TreeNode {
+ * int val;
+ * TreeNode left;
+ * TreeNode right;
+ * TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public void recoverTree(TreeNode root) {
+
+
+        TreeNode p = root;
+        Stack<TreeNode> st = new Stack<TreeNode>();
+        TreeNode pre = new TreeNode(Integer.MIN_VALUE) ;
+        TreeNode first = null;
+        TreeNode second = null;
+        while(!st.isEmpty() || p!=null) {
+            while(p!=null){
+                st.push(p) ;
+                p = p.left ;
+
+            }
+            if(!st.isEmpty()){
+                p = st.pop() ;
+                if( pre.val > p.val) {
+                    if(first == null) {
+                        first = pre;
+                        second = p ;
+                    }else{
+                        second = p ; 
+                        break; 
+                    }
+                }
+                pre =   p ;
+                p = p.right ;
+            }
+        }
+        int tmp = first.val ;
+        first.val = second.val ;
+        second.val = tmp ; 
+    }
+}

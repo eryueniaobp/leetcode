@@ -1,5 +1,6 @@
 /**
- * O(n) 
+ * O(n)  
+ * The path may start and end at any node in the tree. 
  */
 class Solution {
 public:

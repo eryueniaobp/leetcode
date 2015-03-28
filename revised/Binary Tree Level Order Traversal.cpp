@@ -56,7 +56,7 @@ public class Solution {
         ArrayList<ArrayList<Integer>> ret = new ArrayList<ArrayList<Integer>>() ; 
         if(root == null) return ret; 
         int pcnt = 1 , cnt = 0 ; 
-        Queue<TreeNode> queue  = new LinkedList<TreeNode>() ;
+        Queue<TreeNode> queue  = new LinkedList<TreeNode>() ;// open queue. wait to visit 
         queue.offer(root) ; 
         ArrayList<Integer> row = new ArrayList<Integer>() ; 
         while(pcnt > 0  ) {

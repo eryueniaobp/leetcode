@@ -1,4 +1,66 @@
 /**
+ * Definition of TreeNode:
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left, right;
+ *     public TreeNode(int val) {
+ *         this.val = val;
+ *         this.left = this.right = null;
+ *     }
+ * }
+ */
+// A clear java solution 
+public class Solution {
+    /**
+     * @param root: The root of binary tree.
+     * @return: A list of lists of integer include 
+     *          the zigzag level order traversal of its nodes' values 
+     */
+    public void reverse(ArrayList<Integer> row){
+        int i = 0  , j = row.size() - 1 ; 
+        while( i < j ) {
+            Collections.swap(row, i++ , j-- ) ; 
+        }
+    }
+    public ArrayList<ArrayList<Integer>> zigzagLevelOrder(TreeNode root) {
+        // write your code here
+        ArrayList<ArrayList<Integer>> ret = new ArrayList<ArrayList<Integer>>() ; 
+        if(root == null) return ret; 
+        int pcnt = 1 , cnt = 0 ; 
+        Queue<TreeNode> queue  = new LinkedList<TreeNode>() ;
+        queue.offer(root) ; 
+        ArrayList<Integer> row = new ArrayList<Integer>() ; 
+        boolean zig = true;  
+        while(pcnt > 0  ) {
+            TreeNode n = queue.poll() ; 
+            row.add(n.val) ; 
+            if(n.left != null)  { 
+                queue.offer(n.left ) ; cnt++ ; 
+            }
+            if(n.right!=null){
+                queue.offer(n.right) ; cnt++ ;
+            }
+            pcnt--; 
+            if(pcnt == 0  ) {
+                if(zig) {
+                    ret.add(row) ; 
+                }else{
+                    reverse(row)  ; 
+                    ret.add(row); 
+                }
+                row = new ArrayList<Integer>() ; 
+                pcnt = cnt ; 
+                cnt = 0 ; 
+                zig = !zig ;
+            }
+        }
+        return ret; 
+
+    }
+}
+// ---------------------------------------------------------
+// C++ solution
+/**
  * Definition for binary tree
  * struct TreeNode {
  *     int val;
@@ -7,6 +69,7 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+
 class Solution {
 public:
     vector<vector<int> > zigzagLevelOrder(TreeNode *root) {
