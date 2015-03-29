@@ -20,3 +20,5 @@
 .project
 .settings/*
 .settings
+*.jar
+*.class
