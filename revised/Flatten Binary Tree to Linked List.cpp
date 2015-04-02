@@ -24,6 +24,7 @@ The flattened tree should look like:
 
 */
 /**
+ * Note: It is not BST. just binary tree!
  * Time: O(n) 
  * Space: O(1)
  * Step 1 . 左变右 

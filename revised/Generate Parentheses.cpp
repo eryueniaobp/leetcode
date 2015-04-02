@@ -29,13 +29,14 @@ public class Solution {
         int left = n , right = n ;
         Stack<Character> stack = new Stack();
         while( true ) {
-            while(left > 0 ){
+            if(left > 0 ){
                 stack.push('(') ;
                 left -- ;
-            }
-            if(right > left) {
-                stack.push(')') ;
-                right -- ;
+            }else{
+                if(right > left) {
+                    stack.push(')') ;
+                    right -- ;
+                }
             }
 
             if(left == 0 && right == 0 ) {
