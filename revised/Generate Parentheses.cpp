@@ -1,33 +1,71 @@
 /**
  * DFS 
  */
-class Solution {
-private:
-    vector<string> ret;
-public:
-    /**
-     * leftNum : 未配对的 ( 的个数 
-     * leftNumTotal:　字符串中( 的总数 
-     */
-    void solve(int dep, int maxDep, int leftNum, int leftNumTotal, string s) {
-        if (leftNumTotal * 2 > maxDep)
-            return;
-
-        if (dep == maxDep){
-            ret.push_back(s);
-            return;
+public class Solution {
+      List<String> ret = new ArrayList<String>();
+    public void dfs( int l ,int r , String str){
+        if(l == 0 && r == 0) {
+            ret.add(str) ;
+            return ;
         }
-        solve(dep + 1, maxDep, leftNum + 1, leftNumTotal + 1, s + '(');
-        if (leftNum > 0)
-            solve(dep + 1, maxDep, leftNum - 1, leftNumTotal, s + ')');
+        if(l>0) {
+            dfs(l-1,r,str+'(');
+        }
+        if(r>l){
+            dfs(l, r-1,str+')');
+        }
+
     }
-
-    vector<string> generateParenthesis(int n) {
-        // Start typing your C/C++ solution below
-        // DO NOT write int main() function
-        ret.clear();
-        solve(0, 2 * n, 0, 0, "");
+    public List<String> generateParenthesis(int n) {
+        int l = n , r = n ;
+        dfs(l ,r ,"");
         return ret;
-    }  
-};
+    }
+}
+// Java Iterative Solution Perfect! 
+public class Solution {
+    public List<String> generateParenthesis(int n) {
+        List<String>  ret  = new ArrayList<String>() ;
+        int left = n , right = n ;
+        Stack<Character> stack = new Stack();
+        while( true ) {
+            while(left > 0 ){
+                stack.push('(') ;
+                left -- ;
+            }
+            if(right > left) {
+                stack.push(')') ;
+                right -- ;
+            }
 
+            if(left == 0 && right == 0 ) {
+                String a = "" ;
+                Iterator<Character> iter= stack.iterator();
+                while(iter.hasNext()) {
+                    a += iter.next();
+                }
+                ret.add(a) ;
+
+                // pop out until  '(' and right >left ! 
+                stack.pop() ;
+                right++ ;
+                while(!stack.isEmpty()){
+                    char pc = stack.pop();
+                    if(pc == '(' )   left++;
+                    else  {
+                        right++ ;
+                    }
+
+                    if(pc == '(' && right > left ) {
+                        stack.push(')')  ;
+                        right -- ;
+                        break;
+                    }
+                }
+                if(stack.isEmpty()) break;  // get all !
+
+            }
+        }
+        return ret;
+    }
+}
