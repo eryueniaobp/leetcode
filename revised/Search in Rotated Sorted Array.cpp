@@ -4,44 +4,51 @@
  */
 class Solution {
 public:
-    int minsearch(int A[],int s,int e){
-        int mid = (s+e)/2;
-        if(mid == s ) {
-            return s; 
+    int minsearch(int A[],int n ){
+        int i  = 0 , j = n -1 ; 
+        while( i < j ) {
+            int mid = (i+j)/2 ; 
+            // just use A[mid] and A[j] ,we can decide which side the min-value is located on
+            if(A[mid] < A[j]){
+                j = mid ; 
+            }else if(A[mid] > A[j]) {
+                i = mid + 1; 
+            }
         }
-        if(A[s]<=A[mid]){
-			if(s>=1 && A[s-1] > A[s] ) return s;
-            return  minsearch(A,mid+1,e);
-			
-        }else {
-            if(mid>=1 && A[mid-1] > A[mid]) return mid;
-            return minsearch(A,s,mid);
-        }
+        return i  ; 
     }
     int bsearch(int A[],int s,int e,int target){
-        if(s >= e ) return -1;
-        int mid = (s+e)/2;
-        if(target<A[mid]){
-            return  bsearch(A,s,mid,target); 
-        }else if(target > A[mid]){
-            return  bsearch(A,mid+1,e,target);
-        }else{
-            return mid;
+        int i = s , j = e-1 ;
+        while(i<=j){
+            int mid = (i+j)/2; 
+            if(A[mid] < target ) {
+                i = mid +1 ;
+            }else if(A[mid] > target){
+                j = mid - 1; 
+            }else{
+                return mid; 
+            }
         }
+        return -1 ;
     }
     int search(int A[], int n, int target) {
         // Start typing your C/C++ solution below
         // DO NOT write int main() function
         if( n == 0 ) return -1;
-        int minpos = minsearch(A,0,n);
-        int l = bsearch(A,0,minpos,target);
-        if( l == -1 ) {
-            l = bsearch(A,minpos,n,target);
+        int minpos = minsearch(A,n);
+        
+        int ret = -1 ;
+        if(target > A[n-1]) {
+            ret=   bsearch(A,0,minpos,target);
+        }else{
+            ret =  bsearch(A,minpos,n,target);
         }
-        return l;
+        
+        return ret ;
     }
 };
-//  just one binary search . 
+
+//  just one binary search . ugly code ~ @deprecated 
 class Solution {
     /** 
      * param A : an integer ratated sorted array

@@ -236,4 +236,27 @@ void preOrder2(BinTree *root)     //非递归前序遍历
     }
 }
 **/
+/*****************************************************************/
+// Java Solution 
+ //Another Clear Solution for traverse!  Just one while ,more elegant 
+    public void traverse(TreeNode root) {
+        if (root == null) return;
+        Stack<TreeNode> st = new Stack<TreeNode>();
+        TreeNode n = root;
+        while (true) {
+            if (n != null) {
+                //System.out.println(n.val); //  PRE-ORDER 
+                st.push(n);
+                n = n.left;
+            } else {
+                if (!st.isEmpty()) {
+                    n = st.pop();
+                    //System.out.println(n.val); //  IN-ORDER 
+                    n = n.right;
+                } else {
+                    break;
+                }
+            }
+        }
+    }
 
