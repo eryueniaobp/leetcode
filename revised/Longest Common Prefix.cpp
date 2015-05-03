@@ -24,3 +24,22 @@ public:
     }
 };
 
+/** python **/
+class Solution:
+    # @param strs: A list of strings
+    # @return: The longest common prefix
+    def longestCommonPrefix(self, strs):
+        # write your code here
+        if strs == None or len(strs) == 0 :
+            return ""
+        p = 10000000
+        t = strs[0]
+        for s in strs:
+            i = 0 
+            while i < len(s) and i<len(t): 
+                if s[i] != t[i]:
+                    break
+                i+=1
+            p = min(p,i)
+        return t[:p]
+

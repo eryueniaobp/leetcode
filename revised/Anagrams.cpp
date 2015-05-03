@@ -75,4 +75,31 @@ public class Solution {
         }
     }
 }
+/** python **/
+class Solution:
+    # @param strs: A list of strings
+    # @return: A list of strings
+    def anagrams(self, strs):
+        # write your code here
+        a = [ (sorted(i),i) for i in strs ]
+        a = sorted(a , key=lambda x: x[0] ) 
+        
+        pre = None 
+        ret = [] 
+        k =  1 
+        for item in a:
+            if pre == None:
+                pre = item
+                continue
+            if item[0] == pre[0]:
+                if k == 1 : 
+                    ret.append(pre[1]) 
+                    k = 0
+                ret.append(item[1])
+            else:
+                k = 1 
+            pre = item 
+                
+        return ret
+                
 
