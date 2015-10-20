@@ -13,6 +13,13 @@ struct Node {
 /**
 bool operator<(const Node &a,const Node&b ) {
     return a.cost > b.cost ; 
+} 
+or 
+struct Node{
+    // the last const is necessary.
+    bool operator<(const Node& node) const {
+        return cost > node.cost ; 
+    }
 }
 priority_queue<Node> qe ; 
 */
