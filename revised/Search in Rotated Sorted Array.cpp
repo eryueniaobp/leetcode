@@ -49,6 +49,19 @@ public:
 };
 
 //  just one binary search . ugly code ~ @deprecated 
+//  improvement:  * use vals[0] and vals[N-1] to decide which side the target is in. *
+//  after we have decided the target's side, there are 4 cases:  
+// 4 cases: 
+//  target < mid && mid in left side:   
+//        if target in left side: j = mid - 1 ; 
+//        if target in right side: i = mid + 1 ; 
+//  target < mid && mid in right side:  target must be in  right side.  
+//        j = mid-1;  
+//  target > mid && mid in left side:   target must be in left side .  
+//        i = mid+1 ; 
+//  target > mid && mid in right side:  
+//        if target in left side: j = mid -1 ; 
+//        if target in right side: i = mid +1  ; 
 class Solution {
     /** 
      * param A : an integer ratated sorted array
