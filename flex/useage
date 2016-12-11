@@ -1,0 +1,8 @@
+
+flex -o use.c use.l
+
+gcc -g use.c -o use
+
+cat data|./use 
+
+
