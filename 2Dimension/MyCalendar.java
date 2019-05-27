@@ -15,15 +15,24 @@ class MyCalendar {
         }
         if(floor == null ){
             if(end <= ceil.getKey()){
+                cal.put(start,end); 
                 return true; 
             }
             return false;
         }
         if(ceil == null){
-            return start >= floor.getValue(); 
+            if( start >= floor.getValue() ) {
+                cal.put(start,end);
+                return true ;
+            }
+            return false;
         }
         
-        return start >= floor.getValue() && end <= ceil.getKey(); 
+        if( start >= floor.getValue() && end <= ceil.getKey() ) {
+            cal.put(start,end);
+            return true;
+        }
+        return false;
 
 
 
